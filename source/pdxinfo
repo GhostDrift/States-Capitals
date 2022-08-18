@@ -1,0 +1,6 @@
+name=States&Capitals
+author=Jessica Stojkovic
+description=A game to help improve your knowledge of the US states and their capitals
+bundleID=com.organization.package
+version=0.0.1
+buildNumber=1
