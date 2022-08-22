@@ -1,28 +1,27 @@
-import "dvd" -- DEMO
-local dvd = dvd(1, -1) -- DEMO
+import "CoreLibs/object"
+import "CoreLibs/graphics"
+import "CoreLibs/timer"
+import "CoreLibs/ui"
+import "CoreLibs/sprites"
+import "CoreLibs/crank"
+import "CoreLibs/nineslice"
 
+local pd <const> = playdate
 local gfx <const> = playdate.graphics
-local font = gfx.font.new('font/Mini Sans 2X') -- DEMO
+local backgroudnSprite = nil
 
-local function loadGame()
-	playdate.display.setRefreshRate(50) -- Sets framerate to 50 fps
-	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
-	gfx.setFont(font) -- DEMO
+function initialize()
+    local backgroundImage= gfx.image.new("images/map") --make sure the image is a png, jpgs don't work
+	gfx.sprite.setBackgroundDrawingCallback (
+		function(x,y,width, height)
+			gfx.setClipRect(x,y,width,height)
+			backgroundImage:draw(0,0) -- draws the backgroud image in the upper corner
+			gfx.clearClipRect()
+		end
+	)
 end
+initialize()
 
-local function updateGame()
-	dvd:update() -- DEMO
-end
-
-local function drawGame()
-	gfx.clear() -- Clears the screen
-	dvd:draw() -- DEMO
-end
-
-loadGame()
-
-function playdate.update()
-	updateGame()
-	drawGame()
-	playdate.drawFPS(0,0) -- FPS widget
+function pd.update()
+    gfx.sprite.update()
 end
