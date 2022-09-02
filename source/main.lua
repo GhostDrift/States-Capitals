@@ -9,6 +9,8 @@ import "CoreLibs/nineslice"
 local pd <const> = playdate
 local gfx <const> = playdate.graphics
 local mapSprite = nil
+local mapImages = nil
+local imageIndex = 1
 
 function initialize()
     --local backgroundImage= gfx.image.new("images/map") --make sure the image is a png, jpgs don't work
@@ -19,13 +21,28 @@ function initialize()
 	--		gfx.clearClipRect()
 	--	end
 	--)
-	local mapImage = gfx.image.new("images/map")
-	mapSprite = gfx.sprite.new(mapImage)
+	intiializeMapImages()
+	mapSprite = gfx.sprite.new(mapImages[imageIndex])
 	mapSprite:moveTo(200,135)
 	mapSprite:add()
+end
+function intiializeMapImages()
+	mapImages = {}
+	mapImages[1] = gfx.image.new("images/map")
+	mapImages[2] = gfx.image.new("images/map(Alabama)")
+end
+function updateMap()
+	mapSprite:setImage(mapImages[imageIndex])
 end
 initialize()
 
 function pd.update()
+	if(pd.buttonJustPressed(pd.kButtonLeft)) then
+		imageIndex = 1
+		updateMap()
+	elseif(pd.buttonJustPressed(pd.kButtonRight))then
+		imageIndex = 2
+		updateMap()
+	end
     gfx.sprite.update()
 end
