@@ -30,6 +30,7 @@ function intiializeMapImages()
 	mapImages = {}
 	mapImages[1] = gfx.image.new("images/map")
 	mapImages[2] = gfx.image.new("images/map(Alabama)")
+	mapImages[3] = gfx.image.new("images/map(Alaska)")
 end
 function updateMap()
 	mapSprite:setImage(mapImages[imageIndex])
@@ -38,10 +39,18 @@ initialize()
 
 function pd.update()
 	if(pd.buttonJustPressed(pd.kButtonLeft)) then
-		imageIndex = 1
+		if(imageIndex == 1) then
+			imageIndex = #mapImages
+		else
+			imageIndex -= 1
+		end
 		updateMap()
 	elseif(pd.buttonJustPressed(pd.kButtonRight))then
-		imageIndex = 2
+		if(imageIndex == #mapImages) then
+			imageIndex = 1
+		else
+			imageIndex += 1
+		end
 		updateMap()
 	end
     gfx.sprite.update()
