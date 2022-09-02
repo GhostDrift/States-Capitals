@@ -31,6 +31,7 @@ function intiializeMapImages()
 	mapImages[1] = gfx.image.new("images/map")
 	mapImages[2] = gfx.image.new("images/map(Alabama)")
 	mapImages[3] = gfx.image.new("images/map(Alaska)")
+	mapImages[4] = gfx.image.new("images/map(Arazona)")
 end
 function updateMap()
 	mapSprite:setImage(mapImages[imageIndex])
