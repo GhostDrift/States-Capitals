@@ -21,10 +21,12 @@ function initialize()
 	--		gfx.clearClipRect()
 	--	end
 	--)
+	gfx.setBackgroundColor(gfx.kColorClear)
 	intiializeMapImages()
 	mapSprite = gfx.sprite.new(mapImages[imageIndex])
 	mapSprite:moveTo(200,135)
 	mapSprite:add()
+	gfx.drawRect(320,10,20,20)
 end
 function intiializeMapImages()
 	mapImages = {}
