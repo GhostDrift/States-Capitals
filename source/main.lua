@@ -11,6 +11,18 @@ local gfx <const> = playdate.graphics
 local mapSprite = nil
 local mapImages = nil
 local imageIndex = 1
+local correctState = 0
+local life = 3
+gfx.setImageDrawMode(gfx.kDrawModeCopy)
+--create the backgroud image
+--local backgroundImage= gfx.image.new("images/background")
+--gfx.sprite.setBackgroundDrawingCallback (
+--	function(x,y,width, height)
+--		gfx.setClipRect(x,y,width,height)
+--		backgroundImage:draw(0,0) -- draws the backgroud image in the upper corner
+--		gfx.clearClipRect()
+--	end
+--)
 
 function initialize()
     --local backgroundImage= gfx.image.new("images/map") --make sure the image is a png, jpgs don't work
@@ -21,12 +33,15 @@ function initialize()
 	--		gfx.clearClipRect()
 	--	end
 	--)
-	gfx.setBackgroundColor(gfx.kColorClear)
+	
+	gfx.setBackgroundColor(gfx.kColorWhite)
 	intiializeMapImages()
-	mapSprite = gfx.sprite.new(mapImages[imageIndex])
-	mapSprite:moveTo(200,135)
-	mapSprite:add()
-	gfx.drawRect(320,10,20,20)
+	updateMap()
+	updateUi()
+	--mapSprite = gfx.sprite.new(mapImages[imageIndex])
+	--mapSprite:moveTo(200,135)
+	--mapSprite:add()
+	
 end
 function intiializeMapImages()
 	mapImages = {}
@@ -80,11 +95,20 @@ function intiializeMapImages()
 	mapImages[48] = gfx.image.new("images/map(Washington)")
 	mapImages[49] = gfx.image.new("images/map(West Virginia)")
 	mapImages[50] = gfx.image.new("images/map(Wisconsin)")
-	mapImages[51] = gfx.image.new("images/map(Wyoming)")
+	--mapImages[51] = gfx.image.new("images/map(Wyoming)")
+	--mapImages[52] = gfx.image.new("images/map-1")
 			
 end
 function updateMap()
-	mapSprite:setImage(mapImages[imageIndex])
+	gfx.clear()
+	mapImages[imageIndex]:drawCentered(200,133)
+	updateUi()
+end
+function updateUi()
+	gfx.drawRect(320,10,20,20)
+	gfx.drawRect(345,10,20,20)
+	gfx.drawRect(370,10,20,20)
+	gfx.drawText("Find:",20,10)
 end
 initialize()
 
