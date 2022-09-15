@@ -14,6 +14,7 @@ local imageIndex = 1
 local correctState = 0
 local life = 3
 local lifeImages = {}
+local stateNames = {}
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 --create the backgroud image
 --local backgroundImage= gfx.image.new("images/background")
@@ -99,9 +100,23 @@ function intiializeMapImages()
 	mapImages[48] = gfx.image.new("images/map(Washington)")
 	mapImages[49] = gfx.image.new("images/map(West Virginia)")
 	mapImages[50] = gfx.image.new("images/map(Wisconsin)")
-	--mapImages[51] = gfx.image.new("images/map(Wyoming)")
+	mapImages[51] = gfx.image.new("images/map(Wyoming)")
 	--mapImages[52] = gfx.image.new("images/map-1")
 			
+end
+function initializeStateNames()
+	stateNames[1] = "Alabama"
+	stateNames[2] = "Alaska"
+	stateNames[3] = "Arazona"
+	stateNames[4] = "Arkansas"
+	stateNames[5] = "Califorina"
+	stateNames[6] = "Colorado"
+	stateNames[7] = "Connecticut"
+	stateNames[8] = "Delaware"
+	stateNames[9] = "Florida"
+	stateNames[10] = "Georgia"
+	stateNames[11] = "Hawaii"
+	stateNames[12] = "Idaho"
 end
 function updateMap()
 	gfx.clear()
@@ -109,11 +124,12 @@ function updateMap()
 	updateUi()
 end
 function updateUi()
-	lifeImages[1]:drawCentered(330,20)
+	lifeImages[2]:drawCentered(330,20)
 	--gfx.drawRect(320,10,20,20)
 	--gfx.drawRect(345,10,20,20)
 	lifeImages[2]:drawCentered(355,20)
-	gfx.drawRect(370,10,20,20)
+	lifeImages[2]:drawCentered(380,20)
+	--gfx.drawRect(370,10,20,20)
 	gfx.drawText("Find:",20,10)
 end
 initialize()
