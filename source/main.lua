@@ -13,6 +13,7 @@ local mapImages = nil
 local imageIndex = 1
 local correctState = 0
 local life = 3
+local lifeImages = {}
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 --create the backgroud image
 --local backgroundImage= gfx.image.new("images/background")
@@ -36,11 +37,14 @@ function initialize()
 	
 	gfx.setBackgroundColor(gfx.kColorWhite)
 	intiializeMapImages()
+	lifeImages[1] = gfx.image.new("images/emptyHeart")
+	lifeImages[2] = gfx.image.new("images/fullHeart")
 	updateMap()
 	updateUi()
 	--mapSprite = gfx.sprite.new(mapImages[imageIndex])
 	--mapSprite:moveTo(200,135)
 	--mapSprite:add()
+	
 	
 end
 function intiializeMapImages()
@@ -105,8 +109,10 @@ function updateMap()
 	updateUi()
 end
 function updateUi()
-	gfx.drawRect(320,10,20,20)
-	gfx.drawRect(345,10,20,20)
+	lifeImages[1]:drawCentered(330,20)
+	--gfx.drawRect(320,10,20,20)
+	--gfx.drawRect(345,10,20,20)
+	lifeImages[2]:drawCentered(355,20)
 	gfx.drawRect(370,10,20,20)
 	gfx.drawText("Find:",20,10)
 end
