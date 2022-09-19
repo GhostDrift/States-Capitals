@@ -38,6 +38,7 @@ function initialize()
 	
 	gfx.setBackgroundColor(gfx.kColorWhite)
 	intiializeMapImages()
+	initializeStateNames()
 	lifeImages[1] = gfx.image.new("images/emptyHeart")
 	lifeImages[2] = gfx.image.new("images/fullHeart")
 	updateMap()
@@ -155,6 +156,7 @@ function initializeStateNames()
 	stateNames[48] = "West Virginia"
 	stateNames[49] = "Wisconsin"
 	stateNames[50] = "Wyoming"
+	stateNames[51] = " "
 
 end
 function updateMap()
@@ -169,7 +171,7 @@ function updateUi()
 	lifeImages[2]:drawCentered(355,20)
 	lifeImages[2]:drawCentered(380,20)
 	--gfx.drawRect(370,10,20,20)
-	gfx.drawText("Find:",20,10)
+	gfx.drawText("Find: ".. stateNames[imageIndex],20,10)
 end
 initialize()
 
