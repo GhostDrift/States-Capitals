@@ -13,6 +13,7 @@ local mapImages = nil
 local imageIndex = 51
 local correctState = 0
 local life = 3
+local score = 0
 local lifeImages = {}
 local stateNames = {}
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
@@ -160,11 +161,12 @@ function initializeStateNames()
 
 end
 function updateMap()
-	gfx.clear()
-	mapImages[imageIndex]:drawCentered(200,133)
+	
+	updateUi()
 end
 function updateUi()
-	updateMap()
+	gfx.clear()
+	mapImages[imageIndex]:drawCentered(200,133)
 	lifeImages[2]:drawCentered(330,20)
 	--gfx.drawRect(320,10,20,20)
 	--gfx.drawRect(345,10,20,20)
@@ -172,6 +174,7 @@ function updateUi()
 	lifeImages[2]:drawCentered(380,20)
 	--gfx.drawRect(370,10,20,20)
 	gfx.drawText("Find: ".. stateNames[imageIndex],20,10)
+	gfx.drawText("Score: ".. score,200,10)
 end
 function getNextState()
 	imageIndex = math.random(1,50)
@@ -186,16 +189,15 @@ function pd.update()
 		else
 			imageIndex -= 1
 		end
-		updateMap()
+		updateUi()
 	elseif(pd.buttonJustPressed(pd.kButtonRight))then
 		if(imageIndex == #mapImages) then
 			imageIndex = 1
 		else
 			imageIndex += 1
 		end
-		updateMap()
+		updateUi()
 	elseif(pd.buttonJustPressed(pd.kButtonA))then
 		getNextState()
 	end
-    gfx.sprite.update()
 end
