@@ -37,7 +37,7 @@ function initialize()
 	--	end
 	--)
 	math.randomseed(pd.getCurrentTimeMilliseconds())
-	imageIndex = math.random(1,50)
+	correctState = math.random(1,50)
 	gfx.setBackgroundColor(gfx.kColorWhite)
 	intiializeMapImages()
 	initializeStateNames()
@@ -164,6 +164,7 @@ function updateMap()
 	
 	updateUi()
 end
+--updates the ui
 function updateUi()
 	gfx.clear()
 	mapImages[imageIndex]:drawCentered(200,133)
@@ -173,13 +174,23 @@ function updateUi()
 	lifeImages[2]:drawCentered(355,20)
 	lifeImages[2]:drawCentered(380,20)
 	--gfx.drawRect(370,10,20,20)
-	gfx.drawText("Find: ".. stateNames[imageIndex],20,10)
+	gfx.drawText("Find: ".. stateNames[correctState],20,10)
 	gfx.drawText("Score: ".. score,200,10)
 end
+--function to get the next state for the user to find
 function getNextState()
-	imageIndex = math.random(1,50)
+	correctState = math.random(1,50)
 	updateUi()
 end
+--function to check if the user selected the correct state
+function checkState()
+	if(imageIndex == correctState) then
+		score += 1
+		getNextState()
+	else
+		life-= 1
+	end
+end	
 initialize()
 
 function pd.update()
@@ -198,6 +209,6 @@ function pd.update()
 		end
 		updateUi()
 	elseif(pd.buttonJustPressed(pd.kButtonA))then
-		getNextState()
+		checkState()
 	end
 end
