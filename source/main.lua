@@ -16,6 +16,8 @@ local life = 3
 local score = 0
 local lifeImages = {}
 local stateNames = {}
+local fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
+local fontNontendoBoldOutline2X = gfx.font.new('font/Nontendo-Bold-Outline-2x')
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 --create the backgroud image
 --local backgroundImage= gfx.image.new("images/background")
@@ -36,6 +38,7 @@ function initialize()
 	--		gfx.clearClipRect()
 	--	end
 	--)
+	gfx.setFont()
 	math.randomseed(pd.getCurrentTimeMilliseconds())
 	correctState = math.random(1,50)
 	gfx.setBackgroundColor(gfx.kColorWhite)
@@ -202,9 +205,24 @@ function checkState()
 		getNextState()
 	else
 		life-= 1
-		updateUi()
+		checkLife()
 	end
 end	
+--function to check weather the user still has life left
+function checkLife()
+	if(life == 0) then
+		gameOver()
+	else
+		updateUi()
+	end
+end
+--function to display the gameOver Screen
+function gameOver()
+	gfx.clear()
+	gfx.setFont(fontNontendoBoldOutline6X)
+	gfx.drawTextAligned("Game Over",200,50,kTextAlignment.center)
+
+end
 initialize()
 
 function pd.update()
