@@ -18,6 +18,7 @@ local lifeImages = {}
 local stateNames = {}
 local fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
 local fontNontendoBoldOutline2X = gfx.font.new('font/Nontendo-Bold-Outline-2x')
+local fontNontendoBoldOutline1X = gfx.font.new('font/Nontendo-Bold-Outline-1x')
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 --create the backgroud image
 --local backgroundImage= gfx.image.new("images/background")
@@ -38,7 +39,10 @@ function initialize()
 	--		gfx.clearClipRect()
 	--	end
 	--)
-	gfx.setFont()
+	life = 3
+	imageIndex = 51
+	score = 0
+	gfx.setFont(fontNontendoBoldOutline1X)
 	math.randomseed(pd.getCurrentTimeMilliseconds())
 	correctState = math.random(1,50)
 	gfx.setBackgroundColor(gfx.kColorWhite)
@@ -219,6 +223,7 @@ end
 --function to display the gameOver Screen
 function gameOver()
 	gfx.clear()
+	gfx.drawTextAligned("Score: ".. score, 165,140)
 	gfx.setFont(fontNontendoBoldOutline6X)
 	gfx.drawTextAligned("Game Over",200,50,kTextAlignment.center)
 
