@@ -35,13 +35,13 @@ function initialize()
 	--		gfx.clearClipRect()
 	--	end
 	--)
-	
+	math.randomseed(pd.getCurrentTimeMilliseconds())
+	imageIndex = math.random(1,50)
 	gfx.setBackgroundColor(gfx.kColorWhite)
 	intiializeMapImages()
 	initializeStateNames()
 	lifeImages[1] = gfx.image.new("images/emptyHeart")
 	lifeImages[2] = gfx.image.new("images/fullHeart")
-	updateMap()
 	updateUi()
 	--mapSprite = gfx.sprite.new(mapImages[imageIndex])
 	--mapSprite:moveTo(200,135)
@@ -162,9 +162,9 @@ end
 function updateMap()
 	gfx.clear()
 	mapImages[imageIndex]:drawCentered(200,133)
-	updateUi()
 end
 function updateUi()
+	updateMap()
 	lifeImages[2]:drawCentered(330,20)
 	--gfx.drawRect(320,10,20,20)
 	--gfx.drawRect(345,10,20,20)
@@ -172,6 +172,10 @@ function updateUi()
 	lifeImages[2]:drawCentered(380,20)
 	--gfx.drawRect(370,10,20,20)
 	gfx.drawText("Find: ".. stateNames[imageIndex],20,10)
+end
+function getNextState()
+	imageIndex = math.random(1,50)
+	updateUi()
 end
 initialize()
 
@@ -190,6 +194,8 @@ function pd.update()
 			imageIndex += 1
 		end
 		updateMap()
+	elseif(pd.buttonJustPressed(pd.kButtonA))then
+		getNextState()
 	end
     gfx.sprite.update()
 end
