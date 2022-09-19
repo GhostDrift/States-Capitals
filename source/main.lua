@@ -168,11 +168,24 @@ end
 function updateUi()
 	gfx.clear()
 	mapImages[imageIndex]:drawCentered(200,133)
-	lifeImages[2]:drawCentered(330,20)
-	--gfx.drawRect(320,10,20,20)
-	--gfx.drawRect(345,10,20,20)
-	lifeImages[2]:drawCentered(355,20)
-	lifeImages[2]:drawCentered(380,20)
+	if(life== 3) then
+		lifeImages[2]:drawCentered(330,20)
+		lifeImages[2]:drawCentered(355,20)
+		lifeImages[2]:drawCentered(380,20)
+	elseif(life == 2) then
+		lifeImages[2]:drawCentered(330,20)
+		lifeImages[2]:drawCentered(355,20)
+		lifeImages[1]:drawCentered(380,20)
+	elseif(life == 1) then
+		lifeImages[2]:drawCentered(330,20)
+		lifeImages[1]:drawCentered(355,20)
+		lifeImages[1]:drawCentered(380,20)
+	elseif(life <1 ) then
+		lifeImages[1]:drawCentered(330,20)
+		lifeImages[1]:drawCentered(355,20)
+		lifeImages[1]:drawCentered(380,20)
+	end
+	
 	--gfx.drawRect(370,10,20,20)
 	gfx.drawText("Find: ".. stateNames[correctState],20,10)
 	gfx.drawText("Score: ".. score,200,10)
@@ -189,6 +202,7 @@ function checkState()
 		getNextState()
 	else
 		life-= 1
+		updateUi()
 	end
 end	
 initialize()
