@@ -14,10 +14,11 @@ local imageIndex = 51
 local correctState = 0
 local life = 3
 local score = 0
+local gameOverStatus = false
+local showCorrectAnswer = false
 local lifeImages = {}
 local stateNames = {}
 local fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
-local fontNontendoBoldOutline2X = gfx.font.new('font/Nontendo-Bold-Outline-2x')
 local fontNontendoBoldOutline1X = gfx.font.new('font/Nontendo-Bold-Outline-1x')
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 --create the backgroud image
@@ -167,35 +168,35 @@ function initializeStateNames()
 	stateNames[51] = " "
 
 end
-function updateMap()
-	
-	updateUi()
-end
 --updates the ui
 function updateUi()
 	gfx.clear()
-	mapImages[imageIndex]:drawCentered(200,133)
-	if(life== 3) then
-		lifeImages[2]:drawCentered(330,20)
-		lifeImages[2]:drawCentered(355,20)
-		lifeImages[2]:drawCentered(380,20)
-	elseif(life == 2) then
-		lifeImages[2]:drawCentered(330,20)
-		lifeImages[2]:drawCentered(355,20)
-		lifeImages[1]:drawCentered(380,20)
-	elseif(life == 1) then
-		lifeImages[2]:drawCentered(330,20)
-		lifeImages[1]:drawCentered(355,20)
-		lifeImages[1]:drawCentered(380,20)
-	elseif(life <1 ) then
-		lifeImages[1]:drawCentered(330,20)
-		lifeImages[1]:drawCentered(355,20)
-		lifeImages[1]:drawCentered(380,20)
+	if(gameOverStatus) then
+		gfx.setFont(fontNontendoBoldOutline1X)
+		mapImages[correctState]:drawCentered(200,133)
+		gfx.drawText(stateNames[correctState],20,10)
+	else
+		mapImages[imageIndex]:drawCentered(200,133)
+		if(life== 3) then
+			lifeImages[2]:drawCentered(330,20)
+			lifeImages[2]:drawCentered(355,20)
+			lifeImages[2]:drawCentered(380,20)
+		elseif(life == 2) then
+			lifeImages[2]:drawCentered(330,20)
+			lifeImages[2]:drawCentered(355,20)
+			lifeImages[1]:drawCentered(380,20)
+		elseif(life == 1) then
+			lifeImages[2]:drawCentered(330,20)
+			lifeImages[1]:drawCentered(355,20)
+			lifeImages[1]:drawCentered(380,20)
+		elseif(life <1 ) then
+			lifeImages[1]:drawCentered(330,20)
+			lifeImages[1]:drawCentered(355,20)
+			lifeImages[1]:drawCentered(380,20)
+		end
+		gfx.drawText("Find: ".. stateNames[correctState],20,10)
+		gfx.drawText("Score: ".. score,200,10)
 	end
-	
-	--gfx.drawRect(370,10,20,20)
-	gfx.drawText("Find: ".. stateNames[correctState],20,10)
-	gfx.drawText("Score: ".. score,200,10)
 end
 --function to get the next state for the user to find
 function getNextState()
@@ -223,15 +224,26 @@ end
 --function to display the gameOver Screen
 function gameOver()
 	gfx.clear()
-	gfx.drawTextAligned("Score: ".. score, 165,140)
+	gfx.drawTextAligned("Score: ".. score, 200,140,kTextAlignment.center)
+	gfx.drawTextAligned("Press A to view correct Answer",200,180,kTextAlignment.center)
 	gfx.setFont(fontNontendoBoldOutline6X)
 	gfx.drawTextAligned("Game Over",200,50,kTextAlignment.center)
+	gameOverStatus = true
 
 end
 initialize()
 
 function pd.update()
-	if(pd.buttonJustPressed(pd.kButtonLeft)) then
+	if(gameOverStatus) then
+		if(showCorrectAnswer)then
+			if(pd.buttonJustPressed(pd.kButtonA)) then
+				initialize()
+			end
+		elseif(pd.buttonJustPressed(pd.kButtonA)) then
+			showCorrectAnswer = true
+			updateUi()
+		end
+	elseif(pd.buttonJustPressed(pd.kButtonLeft)) then
 		if(imageIndex == 1) then
 			imageIndex = #mapImages
 		else
