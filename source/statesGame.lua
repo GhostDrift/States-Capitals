@@ -26,7 +26,9 @@ function StatesGame:init()
     self.imageIndex = 51
     self:intiializeImages()
     self:initializeStateNames()
-    self.mapSprite = gfx.sprite.new()
+    self.mapSprite = gfx.sprite.new(self.mapImages[imageIndex])
+    self.mapSprite:moveTo(200,133)
+    self.mapSprite:add()
 end
 
 function StatesGame:intiializeImages()
@@ -138,4 +140,8 @@ function StatesGame:initializeStateNames()
 	self.stateNames[49] = "Wisconsin"
 	self.stateNames[50] = "Wyoming"
 	self.stateNames[51] = " "
+end
+
+function StatesGame:update()
+    
 end
