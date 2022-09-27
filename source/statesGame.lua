@@ -22,15 +22,19 @@ function StatesGame:init()
     self.score = 0
     self.lifeImages = {}
     self.stateNames = {}
-    self.correctState = 0
+    math.randomseed(pd.getCurrentTimeMilliseconds())
+    self.correctState = math.random(1,50)
     self.imageIndex = 51
     self:intiializeImages()
     self:initializeStateNames()
-    self.mapSprite = gfx.sprite.new(self.mapImages[imageIndex])
+    self.mapSprite = gfx.sprite.new()
     self.mapSprite:moveTo(200,133)
     self.mapSprite:add()
-end
+    self:updateUI()
 
+    self:add()
+end
+--functions to initialize lists
 function StatesGame:intiializeImages()
 	self.mapImages[1] = gfx.image.new("images/map(Alabama)")
 	self.mapImages[2] = gfx.image.new("images/map(Alaska)")
@@ -141,7 +145,47 @@ function StatesGame:initializeStateNames()
 	self.stateNames[50] = "Wyoming"
 	self.stateNames[51] = " "
 end
+--function to update the ui
+function StatesGame:updateUI()
+    gfx.clear()
+    self.mapSprite:setImage(self.mapImages[self.imageIndex])
+    if(self.life == 3) then
+        self.lifeImages[2]:drawCentered(330,20)
+        self.lifeImages[2]:drawCentered(355,20)
+        self.lifeImages[2]:drawCentered(380,20)
+    elseif(life == 2) then
+        self.lifeImages[2]:drawCentered(330,20)
+        self.lifeImages[2]:drawCentered(355,20)
+        self.lifeImages[1]:drawCentered(380,20)
+    elseif(life == 1) then
+        self.lifeImages[2]:drawCentered(330,20)
+        self.lifeImages[1]:drawCentered(355,20)
+        self.lifeImages[1]:drawCentered(380,20)
+    elseif(life <1 ) then
+        self.lifeImages[1]:drawCentered(330,20)
+        self.lifeImages[1]:drawCentered(355,20)
+        self.lifeImages[1]:drawCentered(380,20)
+    end
+    gfx.drawText("Find: ".. self.stateNames[self.correctState],20,10)
+    gfx.drawText("Score: ".. self.score,200,10)
+end
 
 function StatesGame:update()
-    
+    if(pd.buttonJustPressed(pd.kButtonLeft)) then
+		if(self.imageIndex == 1) then
+			self.imageIndex = #self.mapImages
+		else
+			self.imageIndex -= 1
+		end
+		self:updateUI()
+	elseif(pd.buttonJustPressed(pd.kButtonRight))then
+		if(self.imageIndex == #self.mapImages) then
+			self.imageIndex = 1
+		else
+			self.imageIndex += 1
+		end
+		self:updateUI()
+	elseif(pd.buttonJustPressed(pd.kButtonA))then
+		print("a button pressed")
+	end
 end
