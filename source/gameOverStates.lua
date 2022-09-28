@@ -7,7 +7,7 @@ class("GameOverStates").extends(gfx.sprite)
 
 function GameOverStates:init(text)
     print(text)
-    gfx.setFont(fontNontendoBoldOutline1X)
+    gfx.setFont(fontNontendoBoldOutline1AndOneHalfX)
     local finalScoreImage = gfx.image.new(gfx.getTextSize(text))
     gfx.pushContext(finalScoreImage)
         --gfx.setFont(fontNontendoBoldOutline6X)
@@ -35,13 +35,15 @@ function GameOverStates:init(text)
     --self.gameOverSprite:moveTo(200,100)
     self.gameOverSprite:moveTo(200,-100)
     self.gameOverSprite:add()
-    self.gameOverAnimator = gfx.animator.new(1000,-100,100,pd.easingFunctions.outBounce)
+    self.gameOverAnimator = gfx.animator.new(1500,-100,100,pd.easingFunctions.outBounce,500)
 
     self:add()
 end
 
 function GameOverStates:update()
-    self.gameOverSprite:moveTo(200,self.gameOverAnimator:currentValue())
+    if(not self.gameOverAnimator:ended())then
+        self.gameOverSprite:moveTo(200,self.gameOverAnimator:currentValue())
+    end
     if(pd.buttonJustPressed(pd.kButtonA))then
         SCENE_MANAGER:switchScene(StatesGame,"wipe")
     end

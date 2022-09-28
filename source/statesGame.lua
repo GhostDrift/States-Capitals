@@ -156,7 +156,7 @@ function StatesGame:updateUI()
 end
 --function to create the info sprite
 function StatesGame:updateInfo()
-	gfx.setFont(fontNontendoBoldOutline1X)
+	gfx.setFont(fontNontendoBoldOutline1AndOneHalfX)
 	local infoImage = gfx.image.new(400,40)
 	gfx.pushContext(infoImage)
 		gfx.drawText("Find: ".. self.stateNames[self.correctState],20,10)

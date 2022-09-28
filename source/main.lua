@@ -12,7 +12,7 @@ import "gameOverStates"
 local gfx <const> = playdate.graphics
 local pd <const> = playdate
 fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
-fontNontendoBoldOutline1X = gfx.font.new('font/Nontendo-Bold-1x')
+fontNontendoBoldOutline1AndOneHalfX = gfx.font.new('font/Nontendo-Bold-1.5x')
 
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 
