@@ -18,7 +18,7 @@ class("StatesGame").extends(gfx.sprite)
 
 function StatesGame:init()
     self.mapImages = {}
-    self.life = 3
+    self.life = 0
     self.score = 0
     self.lifeImages = {}
     self.stateNames = {}
@@ -31,6 +31,7 @@ function StatesGame:init()
     self.mapSprite:moveTo(200,133)
     self.mapSprite:add()
     self:updateUI()
+	self:updateInfo()
 
     self:add()
 end
@@ -149,25 +150,38 @@ end
 function StatesGame:updateUI()
     gfx.clear()
     self.mapSprite:setImage(self.mapImages[self.imageIndex])
-    if(self.life == 3) then
-        self.lifeImages[2]:drawCentered(330,20)
-        self.lifeImages[2]:drawCentered(355,20)
-        self.lifeImages[2]:drawCentered(380,20)
-    elseif(life == 2) then
-        self.lifeImages[2]:drawCentered(330,20)
-        self.lifeImages[2]:drawCentered(355,20)
-        self.lifeImages[1]:drawCentered(380,20)
-    elseif(life == 1) then
-        self.lifeImages[2]:drawCentered(330,20)
-        self.lifeImages[1]:drawCentered(355,20)
-        self.lifeImages[1]:drawCentered(380,20)
-    elseif(life <1 ) then
-        self.lifeImages[1]:drawCentered(330,20)
-        self.lifeImages[1]:drawCentered(355,20)
-        self.lifeImages[1]:drawCentered(380,20)
-    end
-    gfx.drawText("Find: ".. self.stateNames[self.correctState],20,10)
-    gfx.drawText("Score: ".. self.score,200,10)
+    
+   
+    
+end
+--function to create the info sprite
+function StatesGame:updateInfo()
+	gfx.setFont(fontNontendoBoldOutline1X)
+	local infoImage = gfx.image.new(400,40)
+	gfx.pushContext(infoImage)
+		gfx.drawText("Find: ".. self.stateNames[self.correctState],20,10)
+		gfx.drawText("Score: ".. self.score,200,10)
+		if(self.life == 3) then
+			self.lifeImages[2]:drawCentered(330,20)
+			self.lifeImages[2]:drawCentered(355,20)
+			self.lifeImages[2]:drawCentered(380,20)
+		elseif(self.life == 2) then
+			self.lifeImages[2]:drawCentered(330,20)
+			self.lifeImages[2]:drawCentered(355,20)
+			self.lifeImages[1]:drawCentered(380,20)
+		elseif(self.life == 1) then
+			self.lifeImages[2]:drawCentered(330,20)
+			self.lifeImages[1]:drawCentered(355,20)
+			self.lifeImages[1]:drawCentered(380,20)
+		elseif(self.life <1 ) then
+			self.lifeImages[1]:drawCentered(330,20)
+			self.lifeImages[1]:drawCentered(355,20)
+			self.lifeImages[1]:drawCentered(380,20)
+		end
+	gfx.popContext()
+	self.infoSprite = gfx.sprite.new(infoImage)
+	self.infoSprite:moveTo(195,15)
+	self.infoSprite:add()
 end
 
 function StatesGame:update()

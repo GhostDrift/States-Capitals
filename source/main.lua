@@ -11,6 +11,8 @@ import "statesGame"
 local gfx <const> = playdate.graphics
 local pd <const> = playdate
 
+gfx.setImageDrawMode(gfx.kDrawModeCopy)
+
 --global singlton object
 SCENE_MANAGER = SceneManager()
 
