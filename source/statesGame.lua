@@ -201,7 +201,7 @@ function StatesGame:checkLife()
 	if(self.life>0)then
 		self:updateInfo()
 	else
-		SCENE_MANAGER:switchScene(GameOverStates,"fade",self.score)
+		SCENE_MANAGER:switchScene(GameOverStates,"fade","Score: "..self.score)
 	end
 		
 end
