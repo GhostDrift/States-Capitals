@@ -6,10 +6,13 @@ import "CoreLibs/timer"
 
 import "sceneManager"
 import "statesGame"
+import "gameOverStates"
 
 --constants
 local gfx <const> = playdate.graphics
 local pd <const> = playdate
+fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
+fontNontendoBoldOutline1X = gfx.font.new('font/Nontendo-Bold-Outline-1x')
 
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 

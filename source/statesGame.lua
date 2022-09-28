@@ -10,8 +10,8 @@ local gfx <const> = pd.graphics
 --local stateNames = {}
 --local correctState = 0
 --local imageIndex = 51
-local fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
-local fontNontendoBoldOutline1X = gfx.font.new('font/Nontendo-Bold-Outline-1x')
+--local fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
+--local fontNontendoBoldOutline1X = gfx.font.new('font/Nontendo-Bold-Outline-1x')
 
 
 class("StatesGame").extends(gfx.sprite)
@@ -201,7 +201,7 @@ function StatesGame:checkLife()
 	if(self.life>0)then
 		self:updateInfo()
 	else
-		SCENE_MANAGER:switchScene(StatesGame,"fade")
+		SCENE_MANAGER:switchScene(GameOverStates,"fade",self.score)
 	end
 		
 end
