@@ -18,7 +18,7 @@ class("StatesGame").extends(gfx.sprite)
 
 function StatesGame:init()
     self.mapImages = {}
-    self.life = 0
+    self.life = 3
     self.score = 0
     self.lifeImages = {}
     self.stateNames = {}
@@ -30,6 +30,9 @@ function StatesGame:init()
     self.mapSprite = gfx.sprite.new()
     self.mapSprite:moveTo(200,133)
     self.mapSprite:add()
+	self.infoSprite = gfx.sprite.new()
+	self.infoSprite:moveTo(195,15)
+	self.infoSprite:add()
     self:updateUI()
 	self:updateInfo()
 
@@ -150,9 +153,6 @@ end
 function StatesGame:updateUI()
     gfx.clear()
     self.mapSprite:setImage(self.mapImages[self.imageIndex])
-    
-   
-    
 end
 --function to create the info sprite
 function StatesGame:updateInfo()
@@ -179,9 +179,26 @@ function StatesGame:updateInfo()
 			self.lifeImages[1]:drawCentered(380,20)
 		end
 	gfx.popContext()
-	self.infoSprite = gfx.sprite.new(infoImage)
-	self.infoSprite:moveTo(195,15)
-	self.infoSprite:add()
+	self.infoSprite:setImage(infoImage)
+end
+--function to get the next state
+function StatesGame:getNextState()
+	self.correctState = math.random(1,50)
+	self:updateInfo()
+end
+--function to check if the user selected the correct state
+function StatesGame:checkState()
+	if(self.imageIndex == self.correctState) then
+		self.score += 1
+		self:getNextState()
+	else
+		self.life-= 1
+		self:checkLife()
+	end
+end	
+--function to check weather the user still has life left
+function StatesGame:checkLife()
+		self:updateInfo()
 end
 
 function StatesGame:update()
@@ -200,6 +217,6 @@ function StatesGame:update()
 		end
 		self:updateUI()
 	elseif(pd.buttonJustPressed(pd.kButtonA))then
-		print("a button pressed")
+		self:checkState()
 	end
 end
