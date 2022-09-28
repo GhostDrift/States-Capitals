@@ -198,7 +198,12 @@ function StatesGame:checkState()
 end	
 --function to check weather the user still has life left
 function StatesGame:checkLife()
+	if(self.life>0)then
 		self:updateInfo()
+	else
+		SCENE_MANAGER:switchScene(StatesGame,"fade")
+	end
+		
 end
 
 function StatesGame:update()
