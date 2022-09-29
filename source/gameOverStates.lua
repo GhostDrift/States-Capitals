@@ -1,9 +1,12 @@
 import "statesGame"
-
+import "CoreLibs/animation"
+import "CoreLibs/animator"
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 class("GameOverStates").extends(gfx.sprite)
+
+local animating = true;
 
 function GameOverStates:init(text)
     print(text)
@@ -16,7 +19,8 @@ function GameOverStates:init(text)
         --gfx.drawTextAligned("Press A to play again",200,180,kTextAlignment.center)
     gfx.popContext()
     self.finalScoreSprite = gfx.sprite.new(finalScoreImage)
-    self.finalScoreSprite:moveTo(200,170)
+    --self.finalScoreSprite:moveTo(200,170)
+    self.finalScoreSprite:moveTo(-200,170)
     self.finalScoreSprite:add()
     local continueText = "Press A to play again"
     local continueTextImage = gfx.image.new(gfx.getTextSize(continueText))
@@ -36,14 +40,27 @@ function GameOverStates:init(text)
     self.gameOverSprite:moveTo(200,-100)
     self.gameOverSprite:add()
     self.gameOverAnimator = gfx.animator.new(1500,-100,100,pd.easingFunctions.outBounce,500)
-
+    self.scoreAnimator = gfx.animator.new(1000,-200,200,pd.easingFunctions.outQuint,1500)
+    self.continueTextBlinker = gfx.animation.blinker.new()
+    self.continueTextBlinker.cycles = 3
+    
     self:add()
 end
-
-function GameOverStates:update()
+--function to animate sprites
+function gameOverStates:animateSprites()
     if(not self.gameOverAnimator:ended())then
         self.gameOverSprite:moveTo(200,self.gameOverAnimator:currentValue())
     end
+    if(not self.scoreAnimator:ended())then
+        self.finalScoreSprite:moveTo(self.scoreAnimator:currentValue(),170)
+    else
+
+    end 
+
+end
+
+function GameOverStates:update()
+    
     if(pd.buttonJustPressed(pd.kButtonA))then
         SCENE_MANAGER:switchScene(StatesGame,"wipe")
     end
