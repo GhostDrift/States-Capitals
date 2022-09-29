@@ -10,7 +10,7 @@ local animating = true;
 local count = 0;
 
 function GameOverStates:init(text)
-    print(text)
+    animating = true;
     gfx.setFont(fontNontendoBoldOutline1AndOneHalfX)
     local finalScoreImage = gfx.image.new(gfx.getTextSize(text))
     gfx.pushContext(finalScoreImage)
@@ -44,8 +44,8 @@ function GameOverStates:init(text)
     self.scoreAnimator = gfx.animator.new(1000,-200,200,pd.easingFunctions.outQuint,1500)
     self.continueTextBlinker = gfx.animation.blinker.new()
     self.continueTextBlinker.cycles = 3
-    print(self.continueTextBlinker.loop)
-    --self.continueTextBlinker.default = false
+    self.continueTextBlinker.onDuration = 400
+    self.continueTextBlinker.offDuration = 200
 
     self:add()
 end
@@ -60,9 +60,9 @@ function GameOverStates:animateSprites()
         if(not self.continueTextBlinker.running)then
             self.continueTextBlinker:start()
         else
-            print(self.continueTextBlinker.counter)
             if(self.continueTextBlinker.counter == 0)then
                 self.continueTextBlinker:stop()
+                animating = false
             elseif(self.continueTextBlinker.on)then
                 self.continueTextSprite:add()
             else
@@ -76,9 +76,10 @@ end
 function GameOverStates:update()
     if(animating) then
         self:animateSprites()
-    end    
-    if(pd.buttonJustPressed(pd.kButtonA))then
+    else  
+        if(pd.buttonJustPressed(pd.kButtonA))then
         SCENE_MANAGER:switchScene(StatesGame,"wipe")
+        end
     end
     gfx.animation.blinker.updateAll()
 end
