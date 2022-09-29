@@ -4,6 +4,7 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
+import "ScreenShake"
 import "sceneManager"
 import "statesGame"
 import "gameOverStates"
@@ -18,6 +19,7 @@ gfx.setImageDrawMode(gfx.kDrawModeCopy)
 
 --global singlton object
 SCENE_MANAGER = SceneManager()
+SCREEN_SHAKE = ScreenShake()
 
 StatesGame()
 

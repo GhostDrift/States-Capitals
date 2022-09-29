@@ -69,6 +69,7 @@ function GameOverStates:animateSprites()
                 self.continueTextSprite:remove()
             end
         end
+        gfx.animation.blinker.updateAll()
     end 
 
 end
@@ -81,5 +82,4 @@ function GameOverStates:update()
         SCENE_MANAGER:switchScene(StatesGame,"wipe")
         end
     end
-    gfx.animation.blinker.updateAll()
 end
