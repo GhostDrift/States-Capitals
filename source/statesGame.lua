@@ -3,28 +3,19 @@
 --local variables
 local pd <const> = playdate
 local gfx <const> = pd.graphics
---local life = 0
---local score = 0
---local mapImages = {}
---local lifeImages = {}
---local stateNames = {}
---local correctState = 0
---local imageIndex = 51
---local fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
---local fontNontendoBoldOutline1X = gfx.font.new('font/Nontendo-Bold-Outline-1x')
 
 
 class("StatesGame").extends(gfx.sprite)
 function StatesGame:init()
-    self.mapImages = {}
+    self.MAP_IMAGES = {}
     self.life = 3
     self.score = 0
-    self.lifeImages = {}
+    self.LIFE_IMAGES = {}
     self.stateNames = {}
     math.randomseed(pd.getCurrentTimeMilliseconds())
     self.correctState = math.random(1,50)
     self.imageIndex = 51
-    self:intiializeImages()
+    --self:intiializeImages()
     self:initializeStateNames()
     self.mapSprite = gfx.sprite.new()
     self.mapSprite:moveTo(200,133)
@@ -39,59 +30,59 @@ function StatesGame:init()
 end
 --functions to initialize lists
 function StatesGame:intiializeImages()
-	self.mapImages[1] = gfx.image.new("images/map(Alabama)")
-	self.mapImages[2] = gfx.image.new("images/map(Alaska)")
-	self.mapImages[3] = gfx.image.new("images/map(Arazona)")
-	self.mapImages[4] = gfx.image.new("images/map(Arkansas)")
-	self.mapImages[5] = gfx.image.new("images/map(Califorina)")
-	self.mapImages[6] = gfx.image.new("images/map(Colorado)")
-	self.mapImages[7] = gfx.image.new("images/map(Connecticut)")
-	self.mapImages[8] = gfx.image.new("images/map(Delaware)")
-	self.mapImages[9] = gfx.image.new("images/map(Florida)")
-	self.mapImages[10] = gfx.image.new("images/map(Georgia)")
-	self.mapImages[11] = gfx.image.new("images/map(Hawaii)")
-	self.mapImages[12] = gfx.image.new("images/map(Idaho)")
-	self.mapImages[13] = gfx.image.new("images/map(Illinois)")
-	self.mapImages[14] = gfx.image.new("images/map(Indiana)")
-	self.mapImages[15] = gfx.image.new("images/map(Iowa)")
-	self.mapImages[16] = gfx.image.new("images/map(Kansas)")
-	self.mapImages[17] = gfx.image.new("images/map(Kentucky)")
-	self.mapImages[18] = gfx.image.new("images/map(Louisiana)")
-	self.mapImages[19] = gfx.image.new("images/map(Maine)")
-	self.mapImages[20] = gfx.image.new("images/map(Maryland)")
-	self.mapImages[21] = gfx.image.new("images/map(Massachusetts)")
-	self.mapImages[22] = gfx.image.new("images/map(Michigan)")
-	self.mapImages[23] = gfx.image.new("images/map(Minnesota)")
-	self.mapImages[24] = gfx.image.new("images/map(Mississippi)")
-	self.mapImages[25] = gfx.image.new("images/map(Missouri)")
-	self.mapImages[26] = gfx.image.new("images/map(Montana)")
-	self.mapImages[27] = gfx.image.new("images/map(Nebraska)")
-	self.mapImages[28] = gfx.image.new("images/map(Nevada)")
-	self.mapImages[29] = gfx.image.new("images/map(New Hampshire)")
-	self.mapImages[30] = gfx.image.new("images/map(New Jersey)")
-	self.mapImages[31] = gfx.image.new("images/map(New Mexico)")
-	self.mapImages[32] = gfx.image.new("images/map(New York)")
-	self.mapImages[33] = gfx.image.new("images/map(North Carolina)")
-	self.mapImages[34] = gfx.image.new("images/map(North Dakota)")
-	self.mapImages[35] = gfx.image.new("images/map(Ohio)")
-	self.mapImages[36] = gfx.image.new("images/map(Oklahoma)")
-	self.mapImages[37] = gfx.image.new("images/map(Oregon)")
-	self.mapImages[38] = gfx.image.new("images/map(Pennsylvania)")
-	self.mapImages[39] = gfx.image.new("images/map(Rhode Island)")
-	self.mapImages[40] = gfx.image.new("images/map(South Carolina)")
-	self.mapImages[41] = gfx.image.new("images/map(South Dakota)")
-	self.mapImages[42] = gfx.image.new("images/map(Tennessee)")
-	self.mapImages[43] = gfx.image.new("images/map(Texas)")
-	self.mapImages[44] = gfx.image.new("images/map(Utah)")
-	self.mapImages[45] = gfx.image.new("images/map(Vermont)")
-	self.mapImages[46] = gfx.image.new("images/map(Virginia)")
-	self.mapImages[47] = gfx.image.new("images/map(Washington)")
-	self.mapImages[48] = gfx.image.new("images/map(West Virginia)")
-	self.mapImages[49] = gfx.image.new("images/map(Wisconsin)")
-	self.mapImages[50] = gfx.image.new("images/map(Wyoming)")
-	self.mapImages[51] = gfx.image.new("images/map")
-    self.lifeImages[1] = gfx.image.new("images/emptyHeart")
-    self.lifeImages[2] = gfx.image.new("images/fullHeart")
+	self.MAP_IMAGES[1] = gfx.image.new("images/map(Alabama)")
+	self.MAP_IMAGES[2] = gfx.image.new("images/map(Alaska)")
+	self.MAP_IMAGES[3] = gfx.image.new("images/map(Arazona)")
+	self.MAP_IMAGES[4] = gfx.image.new("images/map(Arkansas)")
+	self.MAP_IMAGES[5] = gfx.image.new("images/map(Califorina)")
+	self.MAP_IMAGES[6] = gfx.image.new("images/map(Colorado)")
+	self.MAP_IMAGES[7] = gfx.image.new("images/map(Connecticut)")
+	self.MAP_IMAGES[8] = gfx.image.new("images/map(Delaware)")
+	self.MAP_IMAGES[9] = gfx.image.new("images/map(Florida)")
+	self.MAP_IMAGES[10] = gfx.image.new("images/map(Georgia)")
+	self.MAP_IMAGES[11] = gfx.image.new("images/map(Hawaii)")
+	self.MAP_IMAGES[12] = gfx.image.new("images/map(Idaho)")
+	self.MAP_IMAGES[13] = gfx.image.new("images/map(Illinois)")
+	self.MAP_IMAGES[14] = gfx.image.new("images/map(Indiana)")
+	self.MAP_IMAGES[15] = gfx.image.new("images/map(Iowa)")
+	self.MAP_IMAGES[16] = gfx.image.new("images/map(Kansas)")
+	self.MAP_IMAGES[17] = gfx.image.new("images/map(Kentucky)")
+	self.MAP_IMAGES[18] = gfx.image.new("images/map(Louisiana)")
+	self.MAP_IMAGES[19] = gfx.image.new("images/map(Maine)")
+	self.MAP_IMAGES[20] = gfx.image.new("images/map(Maryland)")
+	self.MAP_IMAGES[21] = gfx.image.new("images/map(Massachusetts)")
+	self.MAP_IMAGES[22] = gfx.image.new("images/map(Michigan)")
+	self.MAP_IMAGES[23] = gfx.image.new("images/map(Minnesota)")
+	self.MAP_IMAGES[24] = gfx.image.new("images/map(Mississippi)")
+	self.MAP_IMAGES[25] = gfx.image.new("images/map(Missouri)")
+	self.MAP_IMAGES[26] = gfx.image.new("images/map(Montana)")
+	self.MAP_IMAGES[27] = gfx.image.new("images/map(Nebraska)")
+	self.MAP_IMAGES[28] = gfx.image.new("images/map(Nevada)")
+	self.MAP_IMAGES[29] = gfx.image.new("images/map(New Hampshire)")
+	self.MAP_IMAGES[30] = gfx.image.new("images/map(New Jersey)")
+	self.MAP_IMAGES[31] = gfx.image.new("images/map(New Mexico)")
+	self.MAP_IMAGES[32] = gfx.image.new("images/map(New York)")
+	self.MAP_IMAGES[33] = gfx.image.new("images/map(North Carolina)")
+	self.MAP_IMAGES[34] = gfx.image.new("images/map(North Dakota)")
+	self.MAP_IMAGES[35] = gfx.image.new("images/map(Ohio)")
+	self.MAP_IMAGES[36] = gfx.image.new("images/map(Oklahoma)")
+	self.MAP_IMAGES[37] = gfx.image.new("images/map(Oregon)")
+	self.MAP_IMAGES[38] = gfx.image.new("images/map(Pennsylvania)")
+	self.MAP_IMAGES[39] = gfx.image.new("images/map(Rhode Island)")
+	self.MAP_IMAGES[40] = gfx.image.new("images/map(South Carolina)")
+	self.MAP_IMAGES[41] = gfx.image.new("images/map(South Dakota)")
+	self.MAP_IMAGES[42] = gfx.image.new("images/map(Tennessee)")
+	self.MAP_IMAGES[43] = gfx.image.new("images/map(Texas)")
+	self.MAP_IMAGES[44] = gfx.image.new("images/map(Utah)")
+	self.MAP_IMAGES[45] = gfx.image.new("images/map(Vermont)")
+	self.MAP_IMAGES[46] = gfx.image.new("images/map(Virginia)")
+	self.MAP_IMAGES[47] = gfx.image.new("images/map(Washington)")
+	self.MAP_IMAGES[48] = gfx.image.new("images/map(West Virginia)")
+	self.MAP_IMAGES[49] = gfx.image.new("images/map(Wisconsin)")
+	self.MAP_IMAGES[50] = gfx.image.new("images/map(Wyoming)")
+	self.MAP_IMAGES[51] = gfx.image.new("images/map")
+    self.LIFE_IMAGES[1] = gfx.image.new("images/emptyHeart")
+    self.LIFE_IMAGES[2] = gfx.image.new("images/fullHeart")
     
 end
 
@@ -151,7 +142,7 @@ end
 --function to update the ui
 function StatesGame:updateUI()
     gfx.clear()
-    self.mapSprite:setImage(self.mapImages[self.imageIndex])
+    self.mapSprite:setImage(MAP_IMAGES[self.imageIndex])
 end
 --function to create the info sprite
 function StatesGame:updateInfo()
@@ -161,21 +152,21 @@ function StatesGame:updateInfo()
 		gfx.drawText("Find: ".. self.stateNames[self.correctState],20,10)
 		gfx.drawText("Score: ".. self.score,200,10)
 		if(self.life == 3) then
-			self.lifeImages[2]:drawCentered(330,20)
-			self.lifeImages[2]:drawCentered(355,20)
-			self.lifeImages[2]:drawCentered(380,20)
+			LIFE_IMAGES[2]:drawCentered(330,20)
+			LIFE_IMAGES[2]:drawCentered(355,20)
+			LIFE_IMAGES[2]:drawCentered(380,20)
 		elseif(self.life == 2) then
-			self.lifeImages[2]:drawCentered(330,20)
-			self.lifeImages[2]:drawCentered(355,20)
-			self.lifeImages[1]:drawCentered(380,20)
+			LIFE_IMAGES[2]:drawCentered(330,20)
+			LIFE_IMAGES[2]:drawCentered(355,20)
+			LIFE_IMAGES[1]:drawCentered(380,20)
 		elseif(self.life == 1) then
-			self.lifeImages[2]:drawCentered(330,20)
-			self.lifeImages[1]:drawCentered(355,20)
-			self.lifeImages[1]:drawCentered(380,20)
+			LIFE_IMAGES[2]:drawCentered(330,20)
+			LIFE_IMAGES[1]:drawCentered(355,20)
+			LIFE_IMAGES[1]:drawCentered(380,20)
 		elseif(self.life <1 ) then
-			self.lifeImages[1]:drawCentered(330,20)
-			self.lifeImages[1]:drawCentered(355,20)
-			self.lifeImages[1]:drawCentered(380,20)
+			LIFE_IMAGES[1]:drawCentered(330,20)
+			LIFE_IMAGES[1]:drawCentered(355,20)
+			LIFE_IMAGES[1]:drawCentered(380,20)
 		end
 	gfx.popContext()
 	self.infoSprite:setImage(infoImage)
@@ -208,13 +199,13 @@ end
 function StatesGame:update()
     if(pd.buttonJustPressed(pd.kButtonLeft)) then
 		if(self.imageIndex == 1) then
-			self.imageIndex = #self.mapImages
+			self.imageIndex = #MAP_IMAGES
 		else
 			self.imageIndex -= 1
 		end
 		self:updateUI()
 	elseif(pd.buttonJustPressed(pd.kButtonRight))then
-		if(self.imageIndex == #self.mapImages) then
+		if(self.imageIndex == #MAP_IMAGES) then
 			self.imageIndex = 1
 		else
 			self.imageIndex += 1
