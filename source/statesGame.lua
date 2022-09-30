@@ -1,5 +1,5 @@
 --import statements
-import "ScreenShake"
+
 --local variables
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -15,7 +15,6 @@ local gfx <const> = pd.graphics
 
 
 class("StatesGame").extends(gfx.sprite)
-local ScreenShake = ScreenShake()
 function StatesGame:init()
     self.mapImages = {}
     self.life = 3
@@ -193,16 +192,15 @@ function StatesGame:checkState()
 		self:getNextState()
 	else
 		self.life-= 1
+		SCREEN_SHAKE:setShakeAmount(10)
 		self:checkLife()
 	end
 end	
 --function to check weather the user still has life left
 function StatesGame:checkLife()
 	self:updateInfo()
-	if(self.life >0) then
-		ScreenShake:setShakeAmount(100)
-	else
-		SCENE_MANAGER:switchScene(GameOverStates,"fade","Score: "..self.score)
+	if(self.life == 0) then
+		SCENE_MANAGER:switchScene(GameOverStates,"fade","Score: "..self.score)		
 	end
 		
 end

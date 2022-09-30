@@ -23,8 +23,11 @@ SCREEN_SHAKE = ScreenShake()
 
 StatesGame()
 
+
+
 --update function
 function playdate.update()
    pd.timer.updateTimers()
    gfx.sprite.update()
+   SCREEN_SHAKE:update()
 end
