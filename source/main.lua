@@ -22,6 +22,7 @@ SCENE_MANAGER = SceneManager()
 SCREEN_SHAKE = ScreenShake()
 MAP_IMAGES = {}
 LIFE_IMAGES = {}
+STATE_NAMES = {}
 
 
 
@@ -80,6 +81,60 @@ local function intiializeImages()
 	MAP_IMAGES[51] = gfx.image.new("images/map")
    LIFE_IMAGES[1] = gfx.image.new("images/emptyHeart")
    LIFE_IMAGES[2] = gfx.image.new("images/fullHeart")
+end
+--function to initialize the state names list
+function StatesGame:initializeStateNames()
+	STATE_NAMES[1] = "Alabama"
+	STATE_NAMES[2] = "Alaska"
+	STATE_NAMES[3] = "Arazona"
+	STATE_NAMES[4] = "Arkansas"
+	STATE_NAMES[5] = "Califorina"
+	STATE_NAMES[6] = "Colorado"
+	STATE_NAMES[7] = "Connecticut"
+	STATE_NAMES[8] = "Delaware"
+	STATE_NAMES[9] = "Florida"
+	STATE_NAMES[10] = "Georgia"
+	STATE_NAMES[11] = "Hawaii"
+	STATE_NAMES[12] = "Idaho"
+	STATE_NAMES[13] = "Illinois"
+	STATE_NAMES[14] = "Indiana"
+	STATE_NAMES[15] = "Iowa"
+	STATE_NAMES[16] = "Kansas"
+	STATE_NAMES[17] = "Kentucky"
+	STATE_NAMES[18] = "Louisiana"
+	STATE_NAMES[19] = "Maine"
+	STATE_NAMES[20] = "Maryland"
+	STATE_NAMES[21] = "Massachusetts"
+	STATE_NAMES[22] = "Michigan"
+	STATE_NAMES[23] = "Minnesota"
+	STATE_NAMES[24] = "Mississippi"
+	STATE_NAMES[25] = "Missouri"
+	STATE_NAMES[26] = "Montana"
+	STATE_NAMES[27] = "Nebraska"
+	STATE_NAMES[28] = "Nevada"
+	STATE_NAMES[29] = "New Hampshire"
+	STATE_NAMES[30] = "New Jersey"
+	STATE_NAMES[31] = "New Mexico"
+	STATE_NAMES[32] = "New York"
+	STATE_NAMES[33] = "North Carolina"
+	STATE_NAMES[34] = "North Dakota"
+	STATE_NAMES[35] = "Ohio"
+	STATE_NAMES[36] = "Oklahoma"
+	STATE_NAMES[37] = "Oregon"
+	STATE_NAMES[38] = "Pennsylvania"
+	STATE_NAMES[39] = "Rhode Island"
+	STATE_NAMES[40] = "South Carolina"
+	STATE_NAMES[41] = "South Dakota"
+	STATE_NAMES[42] = "Tennessee"
+	STATE_NAMES[43] = "Texas"
+	STATE_NAMES[44] = "Utah"
+	STATE_NAMES[45] = "Vermont"
+	STATE_NAMES[46] = "Virginia"
+	STATE_NAMES[47] = "Washington"
+	STATE_NAMES[48] = "West Virginia"
+	STATE_NAMES[49] = "Wisconsin"
+	STATE_NAMES[50] = "Wyoming"
+	STATE_NAMES[51] = " "
 end
 local function initialize()
    intiializeImages()
