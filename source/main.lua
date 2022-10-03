@@ -8,6 +8,7 @@ import "ScreenShake"
 import "sceneManager"
 import "statesGame"
 import "gameOverStates"
+import "viewCorrectAnswerStates"
 
 --constants
 local gfx <const> = playdate.graphics

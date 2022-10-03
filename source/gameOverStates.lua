@@ -1,4 +1,5 @@
 import "statesGame"
+import "ViewCorrectAnswerStates"
 import "CoreLibs/animation"
 import "CoreLibs/animator"
 local pd <const> = playdate
@@ -79,7 +80,10 @@ function GameOverStates:update()
         self:animateSprites()
     else  
         if(pd.buttonJustPressed(pd.kButtonA))then
-        SCENE_MANAGER:switchScene(StatesGame,"wipe")
+            SCENE_MANAGER:switchScene(StatesGame,"wipe")
+        end
+        if(pd.buttonJustPressed(pd.kButtonB))then
+           -- SCENE_MANAGER:switchScene(ViewCorrectAnswerStates,"wipe")
         end
     end
 end
