@@ -83,7 +83,7 @@ local function intiializeImages()
    LIFE_IMAGES[2] = gfx.image.new("images/fullHeart")
 end
 --function to initialize the state names list
-function StatesGame:initializeStateNames()
+function initializeStateNames()
 	STATE_NAMES[1] = "Alabama"
 	STATE_NAMES[2] = "Alaska"
 	STATE_NAMES[3] = "Arazona"
@@ -138,6 +138,7 @@ function StatesGame:initializeStateNames()
 end
 local function initialize()
    intiializeImages()
+   initializeStateNames()
    StatesGame()
 end
 
