@@ -41,7 +41,7 @@ function GameOverStates:init(text)
     --self.gameOverSprite:moveTo(200,100)
     self.gameOverSprite:moveTo(200,-100)
     self.gameOverSprite:add()
-    self.gameOverAnimator = gfx.animator.new(1500,-100,100,pd.easingFunctions.outBounce,500)
+    self.gameOverAnimator = gfx.animator.new(1500,-100,100,pd.easingFunctions.outBounce,500) --durration,start value, end value,easing function,delay
     self.scoreAnimator = gfx.animator.new(1000,-200,200,pd.easingFunctions.outQuint,1500)
     self.continueTextBlinker = gfx.animation.blinker.new()
     self.continueTextBlinker.cycles = 3
