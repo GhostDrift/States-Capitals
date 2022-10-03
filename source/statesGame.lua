@@ -9,11 +9,9 @@ class("StatesGame").extends(gfx.sprite)
 function StatesGame:init()
     self.life = 3
     self.score = 0
-    --self.stateNames = {}
     math.randomseed(pd.getCurrentTimeMilliseconds())
     self.correctState = math.random(1,50)
     self.imageIndex = 51
-    --self:initializeStateNames()
     self.mapSprite = gfx.sprite.new()
     self.mapSprite:moveTo(200,133)
     self.mapSprite:add()
@@ -26,59 +24,6 @@ function StatesGame:init()
     self:add()
 end
 
-function StatesGame:initializeStateNames()
-	self.stateNames[1] = "Alabama"
-	self.stateNames[2] = "Alaska"
-	self.stateNames[3] = "Arazona"
-	self.stateNames[4] = "Arkansas"
-	self.stateNames[5] = "Califorina"
-	self.stateNames[6] = "Colorado"
-	self.stateNames[7] = "Connecticut"
-	self.stateNames[8] = "Delaware"
-	self.stateNames[9] = "Florida"
-	self.stateNames[10] = "Georgia"
-	self.stateNames[11] = "Hawaii"
-	self.stateNames[12] = "Idaho"
-	self.stateNames[13] = "Illinois"
-	self.stateNames[14] = "Indiana"
-	self.stateNames[15] = "Iowa"
-	self.stateNames[16] = "Kansas"
-	self.stateNames[17] = "Kentucky"
-	self.stateNames[18] = "Louisiana"
-	self.stateNames[19] = "Maine"
-	self.stateNames[20] = "Maryland"
-	self.stateNames[21] = "Massachusetts"
-	self.stateNames[22] = "Michigan"
-	self.stateNames[23] = "Minnesota"
-	self.stateNames[24] = "Mississippi"
-	self.stateNames[25] = "Missouri"
-	self.stateNames[26] = "Montana"
-	self.stateNames[27] = "Nebraska"
-	self.stateNames[28] = "Nevada"
-	self.stateNames[29] = "New Hampshire"
-	self.stateNames[30] = "New Jersey"
-	self.stateNames[31] = "New Mexico"
-	self.stateNames[32] = "New York"
-	self.stateNames[33] = "North Carolina"
-	self.stateNames[34] = "North Dakota"
-	self.stateNames[35] = "Ohio"
-	self.stateNames[36] = "Oklahoma"
-	self.stateNames[37] = "Oregon"
-	self.stateNames[38] = "Pennsylvania"
-	self.stateNames[39] = "Rhode Island"
-	self.stateNames[40] = "South Carolina"
-	self.stateNames[41] = "South Dakota"
-	self.stateNames[42] = "Tennessee"
-	self.stateNames[43] = "Texas"
-	self.stateNames[44] = "Utah"
-	self.stateNames[45] = "Vermont"
-	self.stateNames[46] = "Virginia"
-	self.stateNames[47] = "Washington"
-	self.stateNames[48] = "West Virginia"
-	self.stateNames[49] = "Wisconsin"
-	self.stateNames[50] = "Wyoming"
-	self.stateNames[51] = " "
-end
 --function to update the ui
 function StatesGame:updateUI()
     gfx.clear()
