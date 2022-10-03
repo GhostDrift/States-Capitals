@@ -16,7 +16,7 @@ end
 function ViewCorrectAnswerStates:initializeAnimationAssets()
     --initialize the blinker for the highlighted state
     self.imageBlinker = gfx.animation.blinker.new()
-    self.imageBlinker.cycles = 7
+    self.imageBlinker.cycles = 6
     self.imageBlinker.onDuration = 400
     self.imageBlinker.offDuration = 200
     self.animating = true
@@ -33,9 +33,22 @@ function ViewCorrectAnswerStates:initializeAnimationAssets()
     self.infoSprite = gfx.sprite.new(infoImage)
     self.infoSprite:moveTo(595,15)
     self.infoSprite:add()
+    --initialize the newGame sprite
+    gfx.setFont(fontMiniSans2X)
+    local newGameText = "Press A to play again"
+    local newGameImage = gfx.image.new(gfx.getTextSize(newGameText))
+    gfx.pushContext(newGameImage)
+        gfx.drawText(newGameText,0,0)
+    gfx.popContext()
+    self.newGameSprite = gfx.sprite.new(newGameImage)
+    self.newGameSprite:moveTo(260,225)
+    self.newGameSprite:add()
     --initialize the animators for the sprites
-    self.mapAnimator = gfx.animator.new(1000,-400,200,pd.easingFunctions.inOutQuart,1500)
+    self.mapAnimator = gfx.animator.new(1000,-400,200,pd.easingFunctions.inOutQuart,1000)
     self.infoAnimator = gfx.animator.new(1000,595,195,pd.easingFunctions.inOutQuart,500)
+    self.newGameAnimator = gfx.animator.new(1000,465,225,pd.easingFunctions.inOutQuart,1500)
+    --intitialize boolean variables
+    self.blinkerFinished = false
 end
 
 -- function to animate the sprites
@@ -47,19 +60,25 @@ function ViewCorrectAnswerStates:Animate()
     else
         if(not self.imageBlinker.running)then
             self.imageBlinker:start()
-        end
-        local imageIndex = 0
-        if(self.imageBlinker.on)then
-            imageIndex = 51
         else
-            imageIndex = self.stateIndex
-        end
-        self.mapSprite:setImage(MAP_IMAGES[imageIndex])
-        if(self.imageBlinker.counter == 0) then
-            self.animating = false
+            if(self.imageBlinker.counter == 0) then
+                self.imageBlinker:stop()
+                self.blinkerFinished = true
+            elseif(not self.blinkerFinished)then
+                local imageIndex = 0
+                if(self.imageBlinker.on)then
+                    imageIndex = 51
+                else
+                    imageIndex = self.stateIndex
+                end
+                self.mapSprite:setImage(MAP_IMAGES[imageIndex])
+                self.imageBlinker:update()
+            else
+                
+            end
         end
     end
-    self.imageBlinker:update()
+    
 end
 
 function ViewCorrectAnswerStates:update()
