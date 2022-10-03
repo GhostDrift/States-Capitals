@@ -41,12 +41,12 @@ function ViewCorrectAnswerStates:initializeAnimationAssets()
         gfx.drawText(newGameText,0,0)
     gfx.popContext()
     self.newGameSprite = gfx.sprite.new(newGameImage)
-    self.newGameSprite:moveTo(260,225)
+    self.newGameSprite:moveTo(260,465)
     self.newGameSprite:add()
     --initialize the animators for the sprites
     self.mapAnimator = gfx.animator.new(1000,-400,200,pd.easingFunctions.inOutQuart,1000)
     self.infoAnimator = gfx.animator.new(1000,595,195,pd.easingFunctions.inOutQuart,500)
-    self.newGameAnimator = gfx.animator.new(1000,465,225,pd.easingFunctions.inOutQuart,1500)
+    self.newGameAnimator = gfx.animator.new(1000,465,225,pd.easingFunctions.inOutQuart,3900)
     --intitialize boolean variables
     self.blinkerFinished = false
 end
@@ -74,7 +74,13 @@ function ViewCorrectAnswerStates:Animate()
                 self.mapSprite:setImage(MAP_IMAGES[imageIndex])
                 self.imageBlinker:update()
             else
-                
+                if(not self.newGameAnimator:ended())then
+                    print(self.newGameAnimator:currentValue())
+                    self.newGameSprite:moveTo(260,self.newGameAnimator:currentValue())
+                else
+                    self.animating = false
+                end
+
             end
         end
     end
