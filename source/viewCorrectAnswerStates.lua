@@ -46,7 +46,7 @@ function ViewCorrectAnswerStates:initializeAnimationAssets()
     --initialize the animators for the sprites
     self.mapAnimator = gfx.animator.new(1000,-400,200,pd.easingFunctions.inOutQuart,1000)
     self.infoAnimator = gfx.animator.new(1000,595,195,pd.easingFunctions.inOutQuart,500)
-    self.newGameAnimator = gfx.animator.new(1000,465,225,pd.easingFunctions.inOutQuart,3900)
+    self.newGameAnimator = gfx.animator.new(500,465,225,pd.easingFunctions.outQuart,4150)
     --intitialize boolean variables
     self.blinkerFinished = false
 end
@@ -75,7 +75,6 @@ function ViewCorrectAnswerStates:Animate()
                 self.imageBlinker:update()
             else
                 if(not self.newGameAnimator:ended())then
-                    print(self.newGameAnimator:currentValue())
                     self.newGameSprite:moveTo(260,self.newGameAnimator:currentValue())
                 else
                     self.animating = false
@@ -90,5 +89,9 @@ end
 function ViewCorrectAnswerStates:update()
     if(self.animating) then
         self:Animate()
+    else
+        if(pd.buttonJustPressed(pd.kButtonA))then
+            SCENE_MANAGER:switchScene(StatesGame,"wipe")
+        end
     end
 end

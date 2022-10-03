@@ -76,8 +76,10 @@ end
 function StatesGame:checkLife()
 	self:updateInfo()
 	if(self.life == 0) then
-		--SCENE_MANAGER:switchScene(GameOverStates,"fade","Score: "..self.score)	
-		SCENE_MANAGER:switchScene(ViewCorrectAnswerStates,"wipe", self.correctState)	
+		local sceneArgs = {"Score: "..self.score, self.correctState}
+		SCENE_MANAGER:switchScene(GameOverStates,"fade",sceneArgs)	
+		--SCENE_MANAGER:switchScene(GameOverStates,"fade","Score: "..self.score, self.correctState)	
+		--SCENE_MANAGER:switchScene(ViewCorrectAnswerStates,"wipe", self.correctState)	
 	end
 		
 end

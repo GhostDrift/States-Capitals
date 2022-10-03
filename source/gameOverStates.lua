@@ -8,10 +8,11 @@ local gfx <const> = pd.graphics
 class("GameOverStates").extends(gfx.sprite)
 
 local animating = true;
-local count = 0;
 
-function GameOverStates:init(text)
+function GameOverStates:init(sceneArgs)
     animating = true;
+    self.stateIndex = sceneArgs[2]
+    local text = sceneArgs[1]
     gfx.setFont(fontNontendoBoldOutline1AndOneHalfX)
     local finalScoreImage = gfx.image.new(gfx.getTextSize(text))
     gfx.pushContext(finalScoreImage)
@@ -24,7 +25,7 @@ function GameOverStates:init(text)
     --self.finalScoreSprite:moveTo(200,170)
     self.finalScoreSprite:moveTo(-200,170)
     self.finalScoreSprite:add()
-    local continueText = "Press A to play again"
+    local continueText = "Press A to view correct answer"
     local continueTextImage = gfx.image.new(gfx.getTextSize(continueText))
     gfx.pushContext(continueTextImage)
         gfx.drawText(continueText,0,0)
@@ -80,7 +81,9 @@ function GameOverStates:update()
         self:animateSprites()
     else  
         if(pd.buttonJustPressed(pd.kButtonA))then
-            SCENE_MANAGER:switchScene(StatesGame,"wipe")
+            --SCENE_MANAGER:switchScene(StatesGame,"wipe")
+            print(self.stateIndex)
+            SCENE_MANAGER:switchScene(ViewCorrectAnswerStates,"wipe",self.stateIndex)
         end
         if(pd.buttonJustPressed(pd.kButtonB))then
            -- SCENE_MANAGER:switchScene(ViewCorrectAnswerStates,"wipe")
