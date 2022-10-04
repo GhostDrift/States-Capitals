@@ -9,6 +9,7 @@ import "sceneManager"
 import "statesGame"
 import "gameOverStates"
 import "viewCorrectAnswerStates"
+import "State"
 
 --constants
 local gfx <const> = playdate.graphics
@@ -137,6 +138,10 @@ function initializeStateNames()
 	STATE_NAMES[49] = "Wisconsin"
 	STATE_NAMES[50] = "Wyoming"
 	STATE_NAMES[51] = " "
+end
+local function initializeStates()
+	local states = {}
+	states[1] = State("Alabama","Montgomery",gfx.image.new("images/map(Alabama)"), gfx.image.new("images/map(Alabama)"),)
 end
 local function initialize()
    intiializeImages()
