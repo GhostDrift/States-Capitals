@@ -148,6 +148,13 @@ local function initializeStates()
 	states[5] = State("Califorina","Sacramento",gfx.image.new("images/map(Califorina)"),gfx.image.new("images/map(Califorina)"),37,2,0,28)
 	states[6] = State("Colorado","Denver",gfx.image.new("images/map(Colorado)"),gfx.image.new("images/map(Colorado)"),50,31,44,16)
 	states[7] = State("Connecticut","Hartford",gfx.image.new("images/map(Connecticut)"),gfx.image.new("images/map(Connecticut)"),21,32,32,39)
+	states[8] = State("Delaware","Dover",gfx.image.new("images/map(Delaware)"),gfx.image.new("images/map(Delaware)"),38,46,20,30)
+	states[9] = State("Florida","Tallahassee",gfx.image.new("images/map(Florida)"),gfx.image.new("images/map(Florida)"),10,0,1,0)
+	states[10] = State("Georgia","Atlanta",gfx.image.new("images/map(Georgia)"),gfx.image.new("images/map(Georgia)"),42,9,1,40)
+	states[11] = State("Hawaii","Honolulu",gfx.image.new("images/map(Hawaii)"),gfx.image.new("images/map(Hawaii)"),3,0,2,43)
+	states[12] = State("Idaho","Boise",gfx.image.new("images/map(Idaho)"),gfx.image.new("images/map(Idaho)"),0,28,37,26)
+	states[13] = State("Illinois","Springfield",gfx.image.new("images/map(Illinois)"),gfx.image.new("images/map(Illinois)"),49,17,25,14)
+	states[14] = State("Indiana","Indianapolis",gfx.image.new("images/map(Indiana)"),gfx.image.new("images/map(Indiana)"),22,17,13,35)
 	
 end
 local function initialize()
