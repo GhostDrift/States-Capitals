@@ -141,7 +141,14 @@ function initializeStateNames()
 end
 local function initializeStates()
 	local states = {}
-	states[1] = State("Alabama","Montgomery",gfx.image.new("images/map(Alabama)"), gfx.image.new("images/map(Alabama)"),)
+	states[1] = State("Alabama","Montgomery",gfx.image.new("images/map(Alabama)"), gfx.image.new("images/map(Alabama)"),42,9,24,10)
+	states[2] = State("Alaska","Juneau",gfx.image.new("images/map(Alaska)"),gfx.image.new("images/map(Alaska)"),5,0,0,11)
+	states[3] = State("Arazona","Phoenix",gfx.image.new("images/map(Arazona)"),gfx.image.new("images/map(Arazona)"),44,11,5,31)
+	states[4] = State("Arkansas","Little Rock",gfx.image.new("images/map(Arkansas)"),gfx.image.new("images/map(Arkansas)"),25,18,36,42)
+	states[5] = State("Califorina","Sacramento",gfx.image.new("images/map(Califorina)"),gfx.image.new("images/map(Califorina)"),37,2,0,28)
+	states[6] = State("Colorado","Denver",gfx.image.new("images/map(Colorado)"),gfx.image.new("images/map(Colorado)"),50,31,44,16)
+	states[7] = State("Connecticut","Hartford",gfx.image.new("images/map(Connecticut)"),gfx.image.new("images/map(Connecticut)"),21,32,32,39)
+	
 end
 local function initialize()
    intiializeImages()
