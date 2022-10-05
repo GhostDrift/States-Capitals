@@ -165,7 +165,18 @@ local function initializeStates()
 	states[22] = State("Michigan","Lansing",gfx.image.new("images/map(Michigan)"),gfx.image.new("images/map(Michigan)"),0,14,49,32)
 	states[23] = State("Minnesota","Saint Paul",gfx.image.new("images/map(Minnesota)"),gfx.image.new("images/map(Minnesota)"),0,15,34,49)
 	states[24] = State("Mississippi","Jackson",gfx.image.new("images/map(Mississippi)"),gfx.image.new("images/map(Mississippi)"),42,18,4,1)
+	states[25] = State("Missouri","Jefferson City",gfx.image.new("images/map(Missouri)"),gfx.image.new("images/map(Missouri)"),15,4,16,13)
+	states[26] = State("Montana","Helena",gfx.image.new("images/map(Montana)"),gfx.image.new("images/map(Montana)"),0,50,12,34)
+	states[27] = State("Nebraska","Lincoln",gfx.image.new("images/map(Nebraska)"),gfx.image.new("images/map(Nebraska)"),41,16,50,15)
+	states[28] = State("Nevada","Carson City",gfx.image.new("images/map(Nevada)"),gfx.image.new("images/map(Nevada)"),37,3,5,44)
+	states[29] = State("New Hampshire","Concord",gfx.image.new("images/map(New Hampshire)"),gfx.image.new("images/map(New Hampshire)"),0,21,45,19)
+	states[30] = State("New Jersey","Trenton",gfx.image.new("images/map(New Jersey)"),gfx.image.new("images/map(New Jersey)"),38,0,8,32)
+	states[31] = State("New Mexico","Santa Fe",gfx.image.new("images/map(New Mexico)"),gfx.image.new("images/map(New Mexico)"),6,43,3,43)
+	states[32] = State("New York","Albany",gfx.image.new("images/map(New York)"),gfx.image.new("images/map(New York)"),0,38,0,21)
+	states[33] = State("North Carolina","Raleigh",gfx.image.new("images/map(North Carolina)"),gfx.image.new("images/map(North Carolina)"),46,40,42,0)
+	states[34] = State("North Dakota","Bismarck",gfx.image.new("images/map(North Dakota)"),gfx.image.new("images/map(North Dakota)"),0,41,26,23)
 	
+ 
 end
 local function initialize()
    intiializeImages()
