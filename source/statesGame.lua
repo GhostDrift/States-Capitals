@@ -89,14 +89,40 @@ function StatesGame:checkLife()
 end
 --function to move between the states
 function StatesGame:moveStates(direction)
+	local newStateIndex 
+	--if(direction == "U") then
+		--self.imageIndex = STATES[self.imageIndex]:getStateAbove()
+	--elseif(direction == "D") then
+		--self.imageIndex = STATES[self.imageIndex]:getStateBelow()
+	--elseif(direction == "L") then
+		--self.imageIndex = STATES[self.imageIndex]:getStateLeft()
+	--elseif(direction == "R") then
+		--self.imageIndex = STATES[self.imageIndex]:getStateRight()
+	--end
 	if(direction == "U") then
-		self.imageIndex = STATES[self.imageIndex]:getStateAbove()
+		newStateIndex = STATES[self.imageIndex]:getStateAbove()
+		print(newStateIndex)
+		if(not (newStateIndex == 0))then
+			self.imageIndex = newStateIndex
+		end
 	elseif(direction == "D") then
-		self.imageIndex = STATES[self.imageIndex]:getStateBelow()
+		newStateIndex = STATES[self.imageIndex]:getStateBelow()
+		print(newStateIndex)
+		if( not (newStateIndex == 0))then
+			self.imageIndex = newStateIndex
+		end
 	elseif(direction == "L") then
-		self.imageIndex = STATES[self.imageIndex]:getStateLeft()
+		newStateIndex = STATES[self.imageIndex]:getStateLeft()
+		print(newStateIndex)
+		if( not (newStateIndex == 0))then
+			self.imageIndex = newStateIndex
+		end
 	elseif(direction == "R") then
-		self.imageIndex = STATES[self.imageIndex]:getStateRight()
+		newStateIndex = STATES[self.imageIndex]:getStateRight()
+		print(newStateIndex)
+		if( not (newStateIndex == 0))then
+			self.imageIndex = newStateIndex
+		end
 	end
 end
 
