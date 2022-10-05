@@ -87,23 +87,55 @@ function StatesGame:checkLife()
 	end
 		
 end
+--function to move between the states
+function StatesGame:moveStates(direction)
+	if(direction == "U") then
+		self.imageIndex = STATES[self.imageIndex]:getStateAbove()
+	elseif(direction == "D") then
+		self.imageIndex = STATES[self.imageIndex]:getStateBelow()
+	elseif(direction == "L") then
+		self.imageIndex = STATES[self.imageIndex]:getStateLeft()
+	elseif(direction == "R") then
+		self.imageIndex = STATES[self.imageIndex]:getStateRight()
+	end
+end
 
 function StatesGame:update()
     if(pd.buttonJustPressed(pd.kButtonLeft)) then
-		if(self.imageIndex == 1) then
+		--if(self.imageIndex == 1) then
 			--self.imageIndex = #MAP_IMAGES
-			self.imageIndex = #STATES
-		else
-			self.imageIndex -= 1
-		end
+			--self.imageIndex = #STATES
+		--else
+			--self.imageIndex -= 1
+		--end
+		self:moveStates("L")
 		self:updateUI()
 	elseif(pd.buttonJustPressed(pd.kButtonRight))then
 		--if(self.imageIndex == #MAP_IMAGES) then
-		if(self.imageIndex == #STATES) then
-			self.imageIndex = 1
-		else
-			self.imageIndex += 1
-		end
+		--if(self.imageIndex == #STATES) then
+			--self.imageIndex = 1
+		--else
+		--	self.imageIndex += 1
+		--end
+		self:moveStates("R")
+		self:updateUI()
+	elseif(pd.buttonJustPressed(pd.kButtonUp))then
+		--if(self.imageIndex == #MAP_IMAGES) then
+		--if(self.imageIndex == #STATES) then
+			--self.imageIndex = 1
+		--else
+		--	self.imageIndex += 1
+		--end
+		self:moveStates("U")
+		self:updateUI()
+	elseif(pd.buttonJustPressed(pd.kButtonDown))then
+		--if(self.imageIndex == #MAP_IMAGES) then
+		--if(self.imageIndex == #STATES) then
+			--self.imageIndex = 1
+		--else
+		--	self.imageIndex += 1
+		--end
+		self:moveStates("D")
 		self:updateUI()
 	elseif(pd.buttonJustPressed(pd.kButtonA))then
 		self:checkState()
