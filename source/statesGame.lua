@@ -11,14 +11,16 @@ function StatesGame:init()
     self.score = 0
     math.randomseed(pd.getCurrentTimeMilliseconds())
     self.correctState = math.random(1,50)
-    self.imageIndex = 51
+    self.imageIndex = 50
     self.mapSprite = gfx.sprite.new()
     self.mapSprite:moveTo(200,133)
     self.mapSprite:add()
 	self.infoSprite = gfx.sprite.new()
 	self.infoSprite:moveTo(195,15)
 	self.infoSprite:add()
-    self:updateUI()
+	gfx.clear()
+	self.mapSprite:setImage(BLANK_MAP)
+   	--self:updateUI()
 	self:updateInfo()
 
     self:add()
@@ -27,14 +29,16 @@ end
 --function to update the ui
 function StatesGame:updateUI()
     gfx.clear()
-    self.mapSprite:setImage(MAP_IMAGES[self.imageIndex])
+    --self.mapSprite:setImage(MAP_IMAGES[self.imageIndex])
+	self.mapSprite:setImage(STATES[self.imageIndex]:getMapImage())
 end
 --function to create the info sprite
 function StatesGame:updateInfo()
 	gfx.setFont(fontNontendoBoldOutline1AndOneHalfX)
 	local infoImage = gfx.image.new(400,40)
 	gfx.pushContext(infoImage)
-		gfx.drawText("Find: ".. STATE_NAMES[self.correctState],20,10)
+		gfx.drawText("Find: " .. STATES[self.correctState]:getName(),20,10)
+		--gfx.drawText("Find: ".. STATE_NAMES[self.correctState],20,10)
 		gfx.drawText("Score: ".. self.score,200,10)
 		if(self.life == 3) then
 			LIFE_IMAGES[2]:drawCentered(330,20)
@@ -87,13 +91,15 @@ end
 function StatesGame:update()
     if(pd.buttonJustPressed(pd.kButtonLeft)) then
 		if(self.imageIndex == 1) then
-			self.imageIndex = #MAP_IMAGES
+			--self.imageIndex = #MAP_IMAGES
+			self.imageIndex = #STATES
 		else
 			self.imageIndex -= 1
 		end
 		self:updateUI()
 	elseif(pd.buttonJustPressed(pd.kButtonRight))then
-		if(self.imageIndex == #MAP_IMAGES) then
+		--if(self.imageIndex == #MAP_IMAGES) then
+		if(self.imageIndex == #STATES) then
 			self.imageIndex = 1
 		else
 			self.imageIndex += 1

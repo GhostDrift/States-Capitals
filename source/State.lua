@@ -1,6 +1,6 @@
 --containter class to hold all of the relevent data for each state
 
-class(State).extends()
+class("State").extends()
 
 --consturctor
 function State:init(name,capitol,mapImage,stateImage,stateAbove,stateBelow,stateLeft,stateRight)

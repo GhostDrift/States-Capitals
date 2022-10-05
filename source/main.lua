@@ -24,8 +24,10 @@ gfx.setImageDrawMode(gfx.kDrawModeCopy)
 SCENE_MANAGER = SceneManager()
 SCREEN_SHAKE = ScreenShake()
 MAP_IMAGES = {}
-LIFE_IMAGES = {}
+LIFE_IMAGES = {gfx.image.new("images/emptyHeart"),gfx.image.new("images/fullHeart")}
 STATE_NAMES = {}
+STATES = {}
+BLANK_MAP = gfx.image.new("images/map")
 
 
 
@@ -191,10 +193,12 @@ local function initializeStates()
 	states[48] = State("West Virginia","Charleston",gfx.image.new("images/map(West Virginia)"),gfx.image.new("images/map(West Virginia)"),38,46,35,20)
 	states[49] = State("Wisconsin","Madison",gfx.image.new("images/map(Wisconsin)"),gfx.image.new("images/map(Wisconsin)"),22,13,23,22)
 	states[50] = State("Wyoming","Cheyenne",gfx.image.new("images/map(Wyoming)"),gfx.image.new("images/map(Wyoming)"),26,6,12,41) 
+	return states
 end
 local function initialize()
-   intiializeImages()
-   initializeStateNames()
+   --intiializeImages()
+   --initializeStateNames()
+   STATES = initializeStates()
    StatesGame()
 end
 

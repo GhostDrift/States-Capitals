@@ -21,14 +21,18 @@ function ViewCorrectAnswerStates:initializeAnimationAssets()
     self.imageBlinker.offDuration = 200
     self.animating = true
     --initialize the map sprite
-    self.mapSprite = gfx.sprite.new(MAP_IMAGES[self.stateIndex])
+    --self.mapSprite = gfx.sprite.new(MAP_IMAGES[self.stateIndex])
+    self.mapSprite = gfx.sprite.new(STATES[self.stateIndex]:getMapImage())
+    self.stateImage = STATES[self.stateIndex]:getMapImage()
     self.mapSprite:moveTo(-400,133)
     self.mapSprite:add()
     --initialize the info sprite
     gfx.setFont(fontNontendoBoldOutline1AndOneHalfX)
-    local infoImage = gfx.image.new(gfx.getTextSize(STATE_NAMES[self.stateIndex]))
+    --local infoImage = gfx.image.new(gfx.getTextSize(STATE_NAMES[self.stateIndex]))
+    local infoImage = gfx.image.new(gfx.getTextSize(STATES[self.stateIndex]:getName()))
     gfx.pushContext(infoImage)
-        gfx.drawText(STATE_NAMES[self.stateIndex],0,0)
+        --gfx.drawText(STATE_NAMES[self.stateIndex],0,0)
+        gfx.drawText(STATES[self.stateIndex]:getName(),0,0)
     gfx.popContext()
     self.infoSprite = gfx.sprite.new(infoImage)
     self.infoSprite:moveTo(595,15)
@@ -67,11 +71,13 @@ function ViewCorrectAnswerStates:Animate()
             elseif(not self.blinkerFinished)then
                 local imageIndex = 0
                 if(self.imageBlinker.on)then
-                    imageIndex = 51
+                    --imageIndex = 51
+                    self.mapSprite:setImage(BLANK_MAP)
                 else
-                    imageIndex = self.stateIndex
+                    --imageIndex = self.stateIndex
+                    self.mapSprite:setImage(self.stateImage)
                 end
-                self.mapSprite:setImage(MAP_IMAGES[imageIndex])
+                --self.mapSprite:setImage(MAP_IMAGES[imageIndex])
                 self.imageBlinker:update()
             else
                 if(not self.newGameAnimator:ended())then
