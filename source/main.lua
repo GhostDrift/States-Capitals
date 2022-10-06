@@ -19,6 +19,7 @@ fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
 fontNontendoBoldOutline1AndOneHalfX = gfx.font.new('font/Nontendo-Bold-1.5x')
 fontNontendoBold4X = gfx.font.new("font/Nontendo-Bold-4x")
 fontMiniSans2X = gfx.font.new("font/Mini-Sans-2X")
+fontMiniSans3X = gfx.font.new("font/Mini-Sans-3X")
 
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
 
