@@ -82,7 +82,6 @@ function GameOverStates:update()
     else  
         if(pd.buttonJustPressed(pd.kButtonA))then
             --SCENE_MANAGER:switchScene(StatesGame,"wipe")
-            print(self.stateIndex)
             SCENE_MANAGER:switchScene(ViewCorrectAnswerStates,"wipe",self.stateIndex)
         end
         if(pd.buttonJustPressed(pd.kButtonB))then

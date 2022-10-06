@@ -101,25 +101,21 @@ function StatesGame:moveStates(direction)
 	--end
 	if(direction == "U") then
 		newStateIndex = STATES[self.imageIndex]:getStateAbove()
-		print(newStateIndex)
 		if(not (newStateIndex == 0))then
 			self.imageIndex = newStateIndex
 		end
 	elseif(direction == "D") then
 		newStateIndex = STATES[self.imageIndex]:getStateBelow()
-		print(newStateIndex)
 		if( not (newStateIndex == 0))then
 			self.imageIndex = newStateIndex
 		end
 	elseif(direction == "L") then
 		newStateIndex = STATES[self.imageIndex]:getStateLeft()
-		print(newStateIndex)
 		if( not (newStateIndex == 0))then
 			self.imageIndex = newStateIndex
 		end
 	elseif(direction == "R") then
 		newStateIndex = STATES[self.imageIndex]:getStateRight()
-		print(newStateIndex)
 		if( not (newStateIndex == 0))then
 			self.imageIndex = newStateIndex
 		end
