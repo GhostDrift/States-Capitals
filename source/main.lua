@@ -10,12 +10,14 @@ import "statesGame"
 import "gameOverStates"
 import "viewCorrectAnswerStates"
 import "State"
+import "gameSelect"
 
 --constants
 local gfx <const> = playdate.graphics
 local pd <const> = playdate
 fontNontendoBoldOutline6X = gfx.font.new('font/Nontendo-Bold-outline-6x')
 fontNontendoBoldOutline1AndOneHalfX = gfx.font.new('font/Nontendo-Bold-1.5x')
+fontNontendoBold4X = gfx.font.new("font/Nontendo-Bold-4x")
 fontMiniSans2X = gfx.font.new("font/Mini-Sans-2X")
 
 gfx.setImageDrawMode(gfx.kDrawModeCopy)
@@ -199,7 +201,8 @@ local function initialize()
    --intiializeImages()
    --initializeStateNames()
    STATES = initializeStates()
-   StatesGame()
+   --StatesGame()
+   GameSelect()
 end
 
 initialize()
