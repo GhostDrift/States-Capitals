@@ -30,15 +30,38 @@ function GameSelect:prepareSprites()
     local statesText = "States"
     self.statesImageUnselected = gfx.image.new(106,106)
     gfx.setLineWidth(3)
-    gfx.pushContext(statesImageUnselected)
+    gfx.pushContext(self.statesImageUnselected)
         gfx.drawRoundRect(2,2,100,30,5)
         gfx.drawTextAligned(statesText,53,10,kTextAlignment.center)
         gfx.setLineWidth(5)
-        --gfx.drawLine(6,30,101,30)
-        --gfx.drawLine(101,30,101,6)
     gfx.popContext()
-
-    self.statesSprite = gfx.sprite.new(statesImageUnselected)
+    self.statesImageSelected = gfx.image.new(106,106)
+    gfx.setLineWidth(3)
+    gfx.pushContext(self.statesImageSelected)
+        gfx.drawRoundRect(2,2,100,30,5)
+        gfx.drawTextAligned(statesText,53,10,kTextAlignment.center)
+        gfx.setLineWidth(5)
+        gfx.drawLine(6,32,101,32)
+        gfx.drawLine(102,32,102,6)
+    gfx.popContext()
+    self.statesSprite = gfx.sprite.new(self.statesImageUnselected)
     self.statesSprite:moveTo(100,150)
     self.statesSprite:add()
+    self.selectedGame = 0
+end
+
+function GameSelect:switchGames()
+    if(self.selectedGame == 0)then
+        self.statesSprite:setImage(self.statesImageSelected)
+        self.selectedGame = 1
+    else
+        self.statesSprite:setImage(self.statesImageUnselected)
+        self.selectedGame = 0
+    end
+end
+
+function GameSelect:update()
+    if(pd.buttonJustPressed(pd.kButtonA))then
+        self:switchGames()
+    end
 end
