@@ -1,5 +1,6 @@
 --import statements
 import "Corelibs/graphics"
+import "statesGame"
 --local variables
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -39,10 +40,21 @@ function GameSelect:prepareSprites()
         gfx.drawRoundRect(2,45,116,120,5)
         gfx.setFont(fontNontendoBoldOutline1AndOneHalfX)
         gfx.drawTextAligned("High Scores",59,50,kTextAlignment.center)
-        gfx.drawTextAligned("1. " .. testList[1],59,80,kTextAlignment.center)
-        gfx.drawTextAligned("2. " .. testList[2],59,100,kTextAlignment.center)
-        gfx.drawTextAligned("3. " .. testList[3],59,120,kTextAlignment.center)
-        gfx.drawTextAligned("4. " .. testList[4],59,140,kTextAlignment.center)
+        if( not (#STATES_SCORES == 0))then
+            if(#STATES_SCORES < 4) then
+                for i = 1, #STATES_SCORES,1 do
+                    gfx.drawTextAligned(i .. ". " .. STATES_SCORES[i],59,(60 + (20 * i)),kTextAlignment.center)
+                end
+            else
+                for i = 1,4,1 do
+                    gfx.drawTextAligned(i .. ". " .. STATES_SCORES[i],59,(60 + (20 * i)),kTextAlignment.center)
+                end
+            end
+        end
+        --gfx.drawTextAligned("1. " .. STATES_SCORES[1],59,80,kTextAlignment.center)
+        --gfx.drawTextAligned("2. " .. STATES_SCORES[2],59,100,kTextAlignment.center)
+        --gfx.drawTextAligned("3. " .. STATES_SCORES[3],59,120,kTextAlignment.center)
+        --gfx.drawTextAligned("4. " .. STATES_SCORES[4],59,140,kTextAlignment.center)
         gfx.drawLine(2,70,115,70)
     gfx.popContext()
     --making the selected image for the statesSprite
@@ -82,6 +94,6 @@ end
 
 function GameSelect:update()
     if(pd.buttonJustPressed(pd.kButtonA))then
-        self:switchGames()
+        SCENE_MANAGER:switchScene(StatesGame,"wipe")
     end
 end

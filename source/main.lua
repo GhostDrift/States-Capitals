@@ -122,6 +122,7 @@ function addCapitolsScore(score)
 end
 local function initialize()
    STATES = initializeStates()
+   loadScores()
    GameSelect()
 end
 
