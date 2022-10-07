@@ -111,14 +111,18 @@ local function loadScores()
 end
 --functions to add scores to the highscore lists
 function addStatesScore(score)
-	STATES_SCORES[#STATES_SCORES+1] = score
-	table.sort(STATES_SCORES,function(a,b) return a > b end)
-	pd.datastore.write(STATES_SCORES,statesFileName,true)
+	if(score > 0)then
+		STATES_SCORES[#STATES_SCORES+1] = score
+		table.sort(STATES_SCORES,function(a,b) return a > b end)
+		pd.datastore.write(STATES_SCORES,statesFileName,true)
+	end
 end
 function addCapitolsScore(score)
-	CAPITOLS_SCORES[#CAPITOLS_SCORES+1] = score
-	table.sort(CAPITOLS_SCORES,function(a,b) return a > b end)
-	pd.datastore.write(CAPITOLS_SCORES,capitolsFileName,true)
+	if(score > 0) then
+		CAPITOLS_SCORES[#CAPITOLS_SCORES+1] = score
+		table.sort(CAPITOLS_SCORES,function(a,b) return a > b end)
+		pd.datastore.write(CAPITOLS_SCORES,capitolsFileName,true)
+	end
 end
 local function initialize()
    STATES = initializeStates()
